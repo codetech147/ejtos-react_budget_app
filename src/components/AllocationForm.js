@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
+import CurrencyContext from '../context/CurrencyContext';
 
 const AllocationForm = (props) => {
     const { dispatch,remaining  } = useContext(AppContext);
+    const { currency } = useContext(CurrencyContext);
 
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
@@ -78,6 +80,7 @@ const AllocationForm = (props) => {
                         onChange={(event) => setCost(event.target.value)}>
                         
                         </input>
+                    <div>Allocated Budget: {currency} {remaining}</div>
                     {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
                         Save
