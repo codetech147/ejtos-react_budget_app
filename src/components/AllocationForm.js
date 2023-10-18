@@ -8,13 +8,20 @@ const AllocationForm = (props) => {
     const [cost, setCost] = useState('');
     const [action, setAction] = useState('');
 
-    const submitEvent = () => {
+    // const { currency } = props;
+    // const [errorMessage, setErrorMessage] = useState('');
 
-            if(cost > remaining) {
-                alert("The value cannot exceed remaining funds  £"+remaining);
-                setCost("");
-                return;
-            }
+    const submitEvent = () => {
+        if (isNaN(cost)) {
+            window.alert('Please enter a valid number.');
+            return;
+        }
+
+        if (parseFloat(cost) > remaining) {
+            window.alert('you canot reduce the budget value lower than the spending.');
+            return;
+        }
+        
 
         const expense = {
             name: name,
@@ -57,7 +64,10 @@ const AllocationForm = (props) => {
                   <select className="custom-select" id="inputGroupSelect02" onChange={(event) => setAction(event.target.value)}>
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
-                  </select>
+                  </select><br></br>
+                  <div className="input-group-append">
+                    <span className="input-group-text">{props.currency}</span>
+                    </div>
 
                     <input
                         required='required'
@@ -66,8 +76,9 @@ const AllocationForm = (props) => {
                         value={cost}
                         style={{ marginLeft: '2rem' , size: 10}}
                         onChange={(event) => setCost(event.target.value)}>
+                        
                         </input>
-
+                    {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
                         Save
                     </button>

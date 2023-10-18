@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+/* app.css */
+
+/* Style for the label */
+.currency-label {
+  background-color: lightblue;
+  padding: 5px;
+  font-weight: bold;
+}
+
+/* Style for the dropdown options */
+.custom-select-options {
+  font-weight: normal;
+}
+
